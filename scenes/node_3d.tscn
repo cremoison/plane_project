@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cj6fxs4w0tp0m"]
+
+[ext_resource type="Texture2D" uid="uid://bcdh3finomvm" path="res://resources/sky_34_2k.png" id="1_noarx"]
+[ext_resource type="PackedScene" uid="uid://cjobk7w7dglh0" path="res://scenes/player.tscn" id="2_r3fl7"]
+[ext_resource type="Texture2D" uid="uid://c8ir54pc4mlws" path="res://resources/texture_10.png" id="3_a0tk4"]
+[ext_resource type="Script" uid="uid://bnb3pyn5767bh" path="res://scripts/debug_ui.gd" id="4_r3fl7"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_a0tk4"]
+panorama = ExtResource("1_noarx")
+
+[sub_resource type="Sky" id="Sky_a202f"]
+sky_material = SubResource("PanoramaSkyMaterial_a0tk4")
+
+[sub_resource type="Environment" id="Environment_noarx"]
+background_mode = 2
+sky = SubResource("Sky_a202f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_color = Color(0.23753911, 0.23753914, 0.23753911, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jka67"]
+albedo_texture = ExtResource("3_a0tk4")
+uv1_scale = Vector3(2056, 2056, 2056)
+
+[node name="Node3D" type="Node3D" unique_id=334236385]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=680038816]
+environment = SubResource("Environment_noarx")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=816775306]
+
+[node name="DebugText" type="Label" parent="HUD" unique_id=1689907480]
+offset_left = 17.0
+offset_top = 18.0
+offset_right = 57.0
+offset_bottom = 41.0
+script = ExtResource("4_r3fl7")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1333761414]
+transform = Transform3D(4.8503065, 0, 0, 0, 4.8503065, 0, 0, 0, 4.8503065, -40.197193, 0.059412956, -161.66348)
+use_collision = true
+size = Vector3(5.626953, 0.34594727, 134.74316)
+material = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=343448068]
+transform = Transform3D(1.0037744, 0, 0, 0, 1.0037744, 0, 0, 0, 1.0037744, -0.0010757446, 0.059412956, -0.033355713)
+use_collision = true
+size = Vector3(50000, 0.5, 50000)
+material = SubResource("StandardMaterial3D_jka67")
+
+[node name="Player" parent="." unique_id=1233236285 instance=ExtResource("2_r3fl7")]
+transform = Transform3D(3.6616387, 0, 0, 0, 3.6533194, -0.24668828, 0, 0.24668828, 3.6533194, -40.066803, 5.016015, 79.2725)

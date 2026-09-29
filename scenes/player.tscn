@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cjobk7w7dglh0"]
+
+[ext_resource type="Script" uid="uid://dv8b3pqdason2" path="res://scripts/player.gd" id="1_dqkch"]
+[ext_resource type="Script" uid="uid://7uc2n4p2o2sb" path="res://scripts/camera_3d.gd" id="2_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://byoem3ak0m8wi" path="res://resources/Cessna172.fbx" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://bnb3pyn5767bh" path="res://scripts/debug_ui.gd" id="4_fjrip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xowi"]
+size = Vector3(0.3779297, 0.29125977, 0.9749756)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3pqv"]
+radius = 0.22680664
+height = 0.45361328
+
+[sub_resource type="LabelSettings" id="LabelSettings_hqtel"]
+line_spacing = -5.0
+font_color = Color(1, 1, 0, 1)
+outline_size = 5
+outline_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=1233236285 node_paths=PackedStringArray("plane_mesh")]
+transform = Transform3D(3.6616387, 0, 0, 0, 3.6533194, -0.24668828, 0, 0.24668828, 3.6533194, 0, 0, 0)
+script = ExtResource("1_dqkch")
+plane_mesh = NodePath("Mesh Pivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=764701595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19403076)
+visible = false
+shape = SubResource("BoxShape3D_4xowi")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1686134264 node_paths=PackedStringArray("target_node")]
+fov = 50.0
+script = ExtResource("2_qlg0r")
+target_node = NodePath("../Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1498426763]
+transform = Transform3D(1, 0, 0, 0, 0.9968413, 0.07941932, 0, -0.07941932, 0.9968413, 0, 0.89648855, 1.7003709)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=2123959876]
+transform = Transform3D(0.13012315, 0, 0, 0, -7.450581e-09, 0.13012315, 0, -0.13012315, -7.450581e-09, 0, -0.120260224, 0.39668497)
+shape = SubResource("SphereShape3D_onrkg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=2122302889]
+transform = Transform3D(0.26628512, 0, 0, 0, -0.016414164, 0.265781, 0, -0.265781, -0.016414164, 0, -0.18097088, -0.12546708)
+shape = SubResource("CapsuleShape3D_i3pqv")
+
+[node name="Mesh Pivot" type="Node3D" parent="." unique_id=1654205646]
+transform = Transform3D(-1.0811238e-08, -0.0018704989, -0.24750479, 0.016675122, 0.24694248, -0.0018662498, 0.24694955, -0.016674643, 0.0001260066, 0, -0.17133082, 0.6972908)
+
+[node name="Cessna172" parent="Mesh Pivot" unique_id=1411650638 instance=ExtResource("3_tuyoq")]
+transform = Transform3D(1.0000001, -4.110441e-09, 0, 0, 0.99999994, -4.65662e-10, -3.5527137e-15, -5.401453e-16, 0.9999999, 0, 0, 0)
+
+[node name="HUD" type="Control" parent="." unique_id=1561056944 node_paths=PackedStringArray("p")]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+script = ExtResource("4_fjrip")
+p = NodePath("..")
+
+[node name="Label" type="Label" parent="HUD" unique_id=60264967]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 65.0
+offset_bottom = 38.0
+text = "debug"
+label_settings = SubResource("LabelSettings_hqtel")

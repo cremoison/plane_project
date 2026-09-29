@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dqa5vycjkst4g"]
+
+[ext_resource type="Environment" uid="uid://bgj81dw0qoghi" path="res://resources/sky_env.tres" id="1_me8dt"]
+[ext_resource type="PackedScene" uid="uid://cjobk7w7dglh0" path="res://scenes/player.tscn" id="2_gafq4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xaub4"]
+albedo_color = Color(0.29803923, 0.6627451, 1, 1)
+metallic_specular = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pvgat"]
+material = SubResource("StandardMaterial3D_xaub4")
+size = Vector2(4000, 4000)
+
+[node name="Main" type="Node3D" unique_id=214441365]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1375408020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3368225, -1.4214478, 0.8251343)
+mesh = SubResource("PlaneMesh_pvgat")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=611335767]
+environment = ExtResource("1_me8dt")
+
+[node name="Player" parent="." unique_id=1233236285 instance=ExtResource("2_gafq4")]
+transform = Transform3D(3.6616387, 0, 0, 0, 3.6533194, -0.24668828, 0, 0.24668828, 3.6533194, 13, 38, 17)

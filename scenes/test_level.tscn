@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c1wi8b31p7t5x"]
+
+[ext_resource type="Texture2D" uid="uid://bcdh3finomvm" path="res://resources/sky_34_2k.png" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://cjobk7w7dglh0" path="res://scenes/player.tscn" id="2_1c2mv"]
+[ext_resource type="Texture2D" uid="uid://c8ir54pc4mlws" path="res://resources/texture_10.png" id="2_f7g2b"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1c2mv"]
+panorama = ExtResource("1_gojnm")
+
+[sub_resource type="Sky" id="Sky_f7g2b"]
+sky_material = SubResource("PanoramaSkyMaterial_1c2mv")
+
+[sub_resource type="Environment" id="Environment_4ptq8"]
+background_mode = 2
+sky = SubResource("Sky_f7g2b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsoxx"]
+albedo_texture = ExtResource("2_f7g2b")
+uv1_scale = Vector3(500, 500, 500)
+
+[node name="TestLevel" type="Node3D" unique_id=538282696]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1453212486]
+environment = SubResource("Environment_4ptq8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=768625176]
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1783252955]
+use_collision = true
+size = Vector3(2000, 0.1, 2000)
+material = SubResource("StandardMaterial3D_hsoxx")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=109789834]
+transform = Transform3D(0.21033521, 0, 0.9776293, 0, 1, 0, -0.9776293, 0, 0.21033521, -543.12, 0, -640.3344)
+use_collision = true
+size = Vector3(30, 2, 600)
+
+[node name="Mountain" type="CSGCylinder3D" parent="." unique_id=470970195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 687.72345, 400.05, 544.51105)
+use_collision = true
+radius = 200.0
+height = 800.0
+
+[node name="Pillar" type="CSGCylinder3D" parent="." unique_id=1051725538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -718.50555, 200.04996, 569.1636)
+use_collision = true
+radius = 30.0
+height = 400.0
+
+[node name="Pillar2" type="CSGCylinder3D" parent="." unique_id=1102565369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -758.9472, 200.04996, 789.2324)
+use_collision = true
+radius = 30.0
+height = 400.0
+
+[node name="Pillar3" type="CSGCylinder3D" parent="." unique_id=486091424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -441.4828, 200.04996, 870.95184)
+use_collision = true
+radius = 30.0
+height = 400.0
+
+[node name="Player" parent="." unique_id=1233236285 instance=ExtResource("2_1c2mv")]
+transform = Transform3D(-0.576341, -0.2436133, -3.6077807, 0, 3.6533194, -0.24668828, 3.6159964, -0.03882867, -0.5750315, -660.3334, 1.8664596, -667.46454)
+fuel_consumption_rate = 0.1
